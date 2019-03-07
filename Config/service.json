@@ -1,0 +1,13 @@
+{
+    "editor": {
+        "class": "Trumbowyg\\Services\\Trumbowyg",
+        "arguments": [
+            "@core",
+            "@router"
+        ],
+        "hooks": {
+            "node.create.response.after": "getEditor",
+            "node.edit.response.after": "getEditor"
+        }
+    }
+}

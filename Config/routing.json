@@ -1,0 +1,7 @@
+{
+    "trumbowyg.upload": {
+        "methode": "POST",
+        "path": "trumbowyg/upload",
+        "uses": "Trumbowyg@pluginUpload"
+    }
+}
