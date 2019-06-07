@@ -1,0 +1,25 @@
+{
+    "name": "soosyze-extension/trumbowyg",
+    "type": "soosyze-module",
+    "description": "Éditeur de texte enrichie pour vos contenus.",
+    "version": "1.0",
+    "autoload": {
+        "psr-4": {
+            "SoosyzeExtension\\Trumbowyg": ""
+        }
+    },
+    "extra": {
+        "soosyze-module": {
+            "title": "Trumbowyg",
+            "package": "Content",
+            "controllers": {
+                "Trumbowyg": "SoosyzeExtension\\Trumbowyg\\Controller\\Trumbowyg"
+            },
+            "icon": {
+                "name": "fas fa-paragraph",
+                "background-color": "#fc5951",
+                "color": "#fff"
+            }
+        }
+    }
+}

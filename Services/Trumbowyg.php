@@ -1,6 +1,6 @@
 <?php
 
-namespace Trumbowyg\Services;
+namespace SoosyzeExtension\Trumbowyg\Services;
 
 class Trumbowyg
 {

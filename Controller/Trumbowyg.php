@@ -1,19 +1,15 @@
 <?php
 
-namespace Trumbowyg\Controller;
+namespace SoosyzeExtension\Trumbowyg\Controller;
 
-use Soosyze\Components\Http\Response;
-use Soosyze\Components\Http\Stream;
 use Soosyze\Components\Validator\Validator;
-
-define('CONFIG_TRUMBOWYG', MODULES_CONTRIBUED . 'Trumbowyg' . DS . 'Config' . DS);
 
 class Trumbowyg extends \Soosyze\Controller
 {
     public function __construct()
     {
-        $this->pathServices = CONFIG_TRUMBOWYG . 'service.json';
-        $this->pathRoutes   = CONFIG_TRUMBOWYG . 'routing.json';
+        $this->pathServices = dirname(__DIR__) . '/Config/service.json';
+        $this->pathRoutes   = dirname(__DIR__) . '/Config/routing.json';
     }
 
     public function pluginUpload($req)
@@ -23,25 +19,23 @@ class Trumbowyg extends \Soosyze\Controller
         if (!empty($server[ 'HTTP_X_REQUESTED_WITH' ]) && strtolower($server[ 'HTTP_X_REQUESTED_WITH' ]) != 'xmlhttprequest') {
             $post = $req->getParsedBody();
 
-            $response = new Response(405, new Stream(json_encode([
+            return $this->json(405, [
                     'message'  => 'uploadNotAjax',
                     'formData' => $post
-            ])));
-
-            return $response->withHeader('Content-Type', [ 'application/json' ]);
+            ]);
         }
 
         $files = $req->getUploadedFiles();
 
-        $validator = (new Validator())
+        $validator = (new Validator)
             ->setRules([
-                'image' => 'image|max:2000000',
+                'image' => 'image|max:200ko',
             ])
             ->setInputs($files);
 
         if ($validator->isValid()) {
             $image = $validator->getInput('image');
-            $path  = self::core()->getSetting('files_public', 'app/files');
+            $path  = self::core()->getSetting('files_public', 'app/files/public');
             $link  = self::file()->cleanPathAndMoveTo($path, $image);
 
             $data = [
@@ -56,8 +50,6 @@ class Trumbowyg extends \Soosyze\Controller
             ];
         }
 
-        $response = new Response($data[ 'status' ], new Stream(json_encode($data)));
-
-        return $response->withHeader('Content-Type', [ 'application/json' ]);
+        return $this->json($data[ 'status' ], $data);
     }
 }

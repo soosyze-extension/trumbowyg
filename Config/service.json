@@ -1,6 +1,6 @@
 {
     "editor": {
-        "class": "Trumbowyg\\Services\\Trumbowyg",
+        "class": "SoosyzeExtension\\Trumbowyg\\Services\\Trumbowyg",
         "arguments": [
             "@core",
             "@router"

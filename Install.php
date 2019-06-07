@@ -1,14 +1,33 @@
 <?php
 
-namespace Trumbowyg;
+namespace SoosyzeExtension\Trumbowyg;
 
-class Install
+use Psr\Container\ContainerInterface;
+
+class Install implements \SoosyzeCore\System\Migration
 {
-    public function install()
+    public function getComposer()
+    {
+        return __DIR__ . '/composer.json';
+    }
+
+    public function install(ContainerInterface $ci)
     {
     }
 
-    public function uninstall()
+    public function uninstall(ContainerInterface $ci)
+    {
+    }
+
+    public function hookInstall(ContainerInterface $ci)
+    {
+    }
+
+    public function hookUninstall(ContainerInterface $ci)
+    {
+    }
+
+    public function seeders(ContainerInterface $ci)
     {
     }
 }
