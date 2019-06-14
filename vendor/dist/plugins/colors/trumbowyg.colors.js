@@ -66,8 +66,8 @@
         }
 
         // background color
-        if (element.style.backgroundColor !== '') {
-            var backColor = colorToHex(element.style.backgroundColor);
+        if (element.style.background-color !== '') {
+            var backColor = colorToHex(element.style.background-color);
             if (trumbowyg.o.plugins.colors.colorList.indexOf(backColor) >= 0) {
                 tags.push('backColor' + backColor);
             } else {
