@@ -18,8 +18,8 @@ class Trumbowyg
     public function getEditor($request, &$response)
     {
         $vendor = $this->router->getBasePath() . $this->core->getSetting('modules_contributed') . 'Trumbowyg/vendor/';
-        $script = $response->getVar('scripts');
-        $style  = $response->getVar('styles');
+        $script = $response->getBlock('this')->getVar('scripts');
+        $style  = $response->getBlock('this')->getVar('styles');
         $script .= '<script src="' . $vendor . 'dist/trumbowyg.min.js"></script>
                 <script type="text/javascript" src="' . $vendor . 'dist/langs/fr.min.js"></script>
                         <script src="' . $vendor . 'dist/plugins/upload/trumbowyg.upload.min.js"></script>
@@ -71,7 +71,7 @@ class Trumbowyg
                             color: #999;
                         }
                         </style>';
-        $response->add([
+        $response->view('this', [
             'scripts' => $script,
             'styles'  => $style
         ]);
