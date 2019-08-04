@@ -17,7 +17,7 @@ class Trumbowyg
 
     public function getEditor($request, &$response)
     {
-        $vendor = $this->router->getBasePath() . $this->core->getSetting('modules_contributed') . 'Trumbowyg/vendor/';
+        $vendor = $this->core->getPath('modules_contributed') . 'Trumbowyg/vendor/';
         $script = $response->getBlock('this')->getVar('scripts');
         $style  = $response->getBlock('this')->getVar('styles');
         $script .= '<script src="' . $vendor . 'dist/trumbowyg.min.js"></script>
