@@ -29,7 +29,7 @@ class Trumbowyg extends \Soosyze\Controller
 
         $validator = (new Validator)
             ->setRules([
-                'image' => 'image|max:200ko',
+                'image' => 'image|max:200Kb',
             ])
             ->setInputs($files);
 

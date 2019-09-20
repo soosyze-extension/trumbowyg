@@ -7,7 +7,8 @@
         ],
         "hooks": {
             "node.create.response.after": "getEditor",
-            "node.edit.response.after": "getEditor"
+            "node.edit.response.after": "getEditor",
+            "section.admin.response.after": "getEditor"
         }
     }
 }
