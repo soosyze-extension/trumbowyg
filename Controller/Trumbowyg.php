@@ -9,14 +9,12 @@ class Trumbowyg extends \Soosyze\Controller
     public function __construct()
     {
         $this->pathServices = dirname(__DIR__) . '/Config/service.json';
-        $this->pathRoutes   = dirname(__DIR__) . '/Config/routing.json';
+        $this->pathRoutes   = dirname(__DIR__) . '/Config/routes.php';
     }
 
     public function pluginUpload($req)
     {
-        $server = $req->getServerParams();
-
-        if (!empty($server[ 'HTTP_X_REQUESTED_WITH' ]) && strtolower($server[ 'HTTP_X_REQUESTED_WITH' ]) != 'xmlhttprequest') {
+        if (!$req->isAjax()) {
             $post = $req->getParsedBody();
 
             return $this->json(405, [
@@ -35,8 +33,13 @@ class Trumbowyg extends \Soosyze\Controller
 
         if ($validator->isValid()) {
             $image = $validator->getInput('image');
-            $path  = self::core()->getSetting('files_public', 'app/files/public');
-            $link  = self::file()->cleanPathAndMoveTo($path, $image);
+            $path  = self::core()->getSettingEnv('files_public', 'app/files') . '/node';
+            $link  = self::file()
+                ->add($image)
+                ->setPath($path)
+                ->setResolvePath()
+                ->setResolveName()
+                ->saveOne();
 
             $data = [
                 'success' => true,

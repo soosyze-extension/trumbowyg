@@ -9,12 +9,10 @@
         }
     },
     "extra": {
-        "soosyze-module": {
+        "soosyze": {
             "title": "Trumbowyg",
             "package": "Content",
-            "controllers": {
-                "Trumbowyg": "SoosyzeExtension\\Trumbowyg\\Controller\\Trumbowyg"
-            },
+            "controller": "SoosyzeExtension\\Trumbowyg\\Controller\\Trumbowyg",
             "icon": {
                 "name": "fas fa-paragraph",
                 "background-color": "#fc5951",
